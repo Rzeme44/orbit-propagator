@@ -16,7 +16,7 @@ A two-body orbit propagator with J2 perturbation, built from scratch in Python (
 | Element round trip | error ~1e-12 |
 | Hohmann LEO to GEO | final radius [your value] km vs 42164 target |
 | Lambert (textbook case) | miss distance 1.1e-6 km |
-| J2 RAAN drift | [numeric] vs [analytic] deg/day, [error]% |
+| J2 RAAN drift | -4.7646 vs -4.7527 deg/day, 0.25% error |
 
 ## Results
 ![Energy drift](results/energy_drift_tight.png)
