@@ -50,3 +50,13 @@ def two_body_j2(t, state):
         r[2] / rn * (5 * z2 - 3),
     ])
     return np.concatenate((v, a + a_j2))
+
+
+def hohmann(r1, r2, mu=MU):
+    a_t = (r1 + r2) / 2
+    v1 = np.sqrt(mu / r1)
+    v2 = np.sqrt(mu / r2)
+    vp = np.sqrt(mu * (2 / r1 - 1 / a_t))   # speed at start of ellipse
+    va = np.sqrt(mu * (2 / r2 - 1 / a_t))   # speed at far end of ellipse
+    tof = np.pi * np.sqrt(a_t**3 / mu)
+    return vp - v1, v2 - va, tof
