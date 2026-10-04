@@ -18,6 +18,8 @@ A two-body orbit propagator with J2 perturbation, built from scratch in Python (
 | Lambert (textbook case) | miss distance 1.1e-6 km |
 | J2 RAAN drift | -4.7646 vs -4.7527 deg/day, 0.25% error |
 
+Note: the 2e-5 km Hohmann error (about 2 cm at GEO radius) comes from numerical integration tolerance, not from the transfer calculation. Tightening the integrator's rtol/atol reduces it further.
+
 ## Results
 ![Energy drift](results/energy_drift_tight.png)
 ![J2 RAAN drift](results/j2_raan.png)
