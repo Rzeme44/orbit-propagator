@@ -33,3 +33,20 @@ def coe2rv(a, e, i, Om, w, nu, mu=MU):
     def Rx(t): return np.array([[1, 0, 0], [0, np.cos(t), -np.sin(t)], [0, np.sin(t), np.cos(t)]])
     R = Rz(Om) @ Rx(i) @ Rz(w)
     return R @ r_pf, R @ v_pf
+
+J2 = 1.08263e-3
+RE = 6378.137  # km
+
+def two_body_j2(t, state):
+    r = state[:3]
+    v = state[3:]
+    rn = np.linalg.norm(r)
+    a = -MU * r / rn**3
+    k = 1.5 * J2 * MU * RE**2 / rn**4
+    z2 = (r[2] / rn)**2
+    a_j2 = k * np.array([
+        r[0] / rn * (5 * z2 - 1),
+        r[1] / rn * (5 * z2 - 1),
+        r[2] / rn * (5 * z2 - 3),
+    ])
+    return np.concatenate((v, a + a_j2))
